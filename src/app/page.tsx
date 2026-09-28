@@ -44,12 +44,14 @@ export default function Home() {
   const [copiedToast, setCopiedToast] = useState<boolean>(false);
   const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
 
+  const DEFAULT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwhAudTpneX2g1XUpPtLjDClWqyfrYs1PyILltK8glAfdSMda1jZUJL0JGxCYXm5hxG/exec";
+
   // 연동 설정 (LocalStorage 기반 저장)
   const [webhookUrl, setWebhookUrl] = useState<string>(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("edu_webhook_url") || "";
+      return localStorage.getItem("edu_webhook_url") || DEFAULT_WEBHOOK_URL;
     }
-    return "";
+    return DEFAULT_WEBHOOK_URL;
   });
   const [geminiApiKey, setGeminiApiKey] = useState<string>(() => {
     if (typeof window !== "undefined") {
